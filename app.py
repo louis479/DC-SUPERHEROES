@@ -1,4 +1,3 @@
-
 from flask import Flask, jsonify, request
 from extension_app import db
 from flask_migrate import Migrate
