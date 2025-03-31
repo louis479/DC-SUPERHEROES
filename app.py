@@ -3,17 +3,20 @@ from extension_app import db
 from flask_migrate import Migrate
 from models import db, Hero, Power, HeroPower
 
+#here you Initialize  your Flask app & Configure SQLite database
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///superheroes.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-db.init_app(app)
-migrate = Migrate(app, db)
+db.init_app(app) # Initialize database
+migrate = Migrate(app, db) # Set up the Flask-Migrate for handling database migrations
 
+# Define the home route
 @app.route("/")
 def home():
     return {"message": "Welcome to the Superheroes API!"}
 
+# Routes that assist you in your postman
 @app.route("/heroes", methods=["GET"])
 def get_heroes():
     heroes = Hero.query.all()
@@ -52,6 +55,8 @@ def update_power(id):
     
     return jsonify({"errors": ["Validation error"]}), 400
 
+
+# Here is the point in the code in which hero & power relationship merge
 @app.route("/hero_powers", methods=["POST"])
 def create_hero_power():
     data = request.json
@@ -75,7 +80,9 @@ def create_hero_power():
         "strength": hero_power.strength
     })
 
+# This ensures that the models are imported correctly
 from models import Hero, Power, HeroPower
 
+# Run the Flask app
 if __name__ == "__main__":
     app.run(debug=True)

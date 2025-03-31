@@ -1,9 +1,9 @@
-from extension_app import db
+from extension_app import db  # Import database instance from the extension module to prevent circular error between models and app
 
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
-
+# Here are the models  for Hero, Power & HeroPower
 class Hero(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
