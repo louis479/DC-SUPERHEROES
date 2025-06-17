@@ -77,12 +77,7 @@ def create_hero_power():
         "power_id": power.id,
         "strength": hero_power.strength
     })
-# Import the models to ensure they are registered with SQLAlchemy
-# from extension_app import db  # Import database instance from the extension module to prevent circular error between models and app
-# from flask_sqlalchemy import SQLAlchemy      
-# db = SQLAlchemy()                               
-
-
+                            
 # This ensures that the models are imported correctly
 from models import Hero, Power, HeroPower
 
